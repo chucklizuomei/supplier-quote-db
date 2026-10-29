@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.bak
+*.bak_*
+
+# macOS
+.DS_Store
+
+# 数据库与商业数据 —— 绝不入库
+*.sqlite
+*.sqlite3
+*.db
+supplier_db.sqlite
+supplier_db.sqlite.bak_*
+results/
