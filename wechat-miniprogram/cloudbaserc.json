@@ -1,0 +1,12 @@
+{
+  "envId": "cloud1-d3g6a4lna2b313d6d",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "queryParts",
+      "runtime": "Nodejs16.13",
+      "memorySize": 256,
+      "timeout": 30
+    }
+  ]
+}

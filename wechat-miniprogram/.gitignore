@@ -1,0 +1,10 @@
+# 数据文件：同步脚本会把最新库复制进云函数目录，属于运行期产物，不入库
+cloudfunctions/queryParts/supplier_db.sqlite
+
+# 依赖：云函数采用“随包上传”策略（依赖已精简并打包进函数目录），因此提交函数内的 node_modules。
+# 仅忽略项目根目录下的 node_modules（本小程序无根 node_modules，此行仅为防御性约定）。
+/node_modules/
+
+# 系统/临时
+.DS_Store
+*.log

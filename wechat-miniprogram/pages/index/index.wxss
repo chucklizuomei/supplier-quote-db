@@ -1,0 +1,85 @@
+.label {
+  font-size: 26rpx;
+  color: #5F5E5A;
+  margin-bottom: 10rpx;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #F1EFE8;
+  border: 1px solid #D3D1C7;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  font-size: 28rpx;
+  min-height: 160rpx;
+}
+
+.input-line {
+  min-height: auto;
+  height: 72rpx;
+}
+
+.error {
+  color: #A32D2D;
+  font-size: 26rpx;
+  margin-top: 16rpx;
+}
+
+.summary {
+  color: #0F6E56;
+  font-size: 26rpx;
+  margin-top: 16rpx;
+}
+
+.q {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+
+.miss {
+  color: #A32D2D;
+  font-size: 27rpx;
+}
+
+.meta {
+  font-size: 25rpx;
+  color: #444441;
+  line-height: 1.6;
+}
+
+.quote {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 27rpx;
+  padding: 8rpx 0;
+  border-top: 1px solid #F1EFE8;
+  margin-top: 6rpx;
+}
+
+.tag {
+  background: #E6F1FB;
+  color: #185FA5;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  padding: 2rpx 10rpx;
+  margin: 0 12rpx;
+}
+
+.price {
+  color: #BA7517;
+  font-weight: 500;
+}
+
+.note {
+  color: #888780;
+  font-size: 22rpx;
+}
+
+.alt {
+  font-size: 24rpx;
+  color: #5F5E5A;
+  margin-top: 10rpx;
+}

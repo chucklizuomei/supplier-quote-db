@@ -1,0 +1,31 @@
+page {
+  background: #F1EFE8;
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+  color: #2C2C2A;
+}
+
+.container {
+  padding: 24rpx 28rpx;
+  box-sizing: border-box;
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #D3D1C7;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.btn {
+  background: #185FA5;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  padding: 18rpx 0;
+  text-align: center;
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+}

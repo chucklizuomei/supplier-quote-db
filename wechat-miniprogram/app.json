@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "供应商报价查询",
+    "navigationBarBackgroundColor": "#185FA5",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F1EFE8"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

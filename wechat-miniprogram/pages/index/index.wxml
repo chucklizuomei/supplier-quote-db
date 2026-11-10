@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="card">
+    <view class="label">零件号（每行一个，可加品牌前缀 CAT:4W5698）</view>
+    <textarea class="input" value="{{input}}" bindinput="onInput" placeholder="例如：&#10;4W5698&#10;CAT:3590908&#10;350-5417" auto-height maxlength="-1" />
+
+    <view class="label" style="margin-top:16rpx;">限定品牌（可选：CATERPILLAR / PERKINS / SCANIA）</view>
+    <input class="input input-line" value="{{brand}}" bindinput="onBrand" placeholder="留空=不限品牌" />
+
+    <button class="btn" style="margin-top:20rpx;" bindtap="onQuery" disabled="{{loading}}">
+      {{ loading ? '查询中…' : '查价' }}
+    </button>
+
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+    <view wx:if="{{summary}}" class="summary">{{summary}}</view>
+  </view>
+
+  <block wx:for="{{results}}" wx:key="query">
+    <view class="card">
+      <view class="q">{{item.query}}</view>
+      <view wx:if="{{!item.result}}" class="miss">库中无此件</view>
+      <block wx:else>
+        <view class="meta">[{{item.result.brand}}] {{item.result.part_number}}</view>
+        <view class="meta">{{item.result.name_en}} / {{item.result.name_cn}}</view>
+        <view class="meta">机型：{{item.result.models || '—'}}</view>
+
+        <view wx:for="{{item.result.quotes}}" wx:for-item="q" wx:key="supplier" class="quote">
+          <text>{{q.supplier}}</text>
+          <text class="tag">{{q.quality || '未标质量'}}</text>
+          <text class="price">¥{{q.price_text}}</text>
+          <text wx:if="{{q.price_note}}" class="note">（{{q.price_note}}）</text>
+        </view>
+
+        <view wx:if="{{item.result.alt_of.length}}" class="alt">
+          该件通用号（交叉号）：
+          <block wx:for="{{item.result.alt_of}}" wx:for-item="a" wx:key="alt_part_number">{{a.alt_part_number}}({{a.alt_brand}})</block>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
