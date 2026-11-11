@@ -41,6 +41,31 @@ DEFAULT_DB = os.path.expanduser("~/.openclaw/workspace/supplier_db/supplier_db.s
 DEFAULT_ENV = "cloud1-d3g6a4lna2b313d6d"             # 你的微信云开发环境 ID
 
 
+def find_tcb():
+    """定位 tcb 可执行文件。
+
+    自动化/定时任务可能不在 PATH 中带出 node bin 目录，
+    故优先使用本机已知绝对路径，再回退到 PATH 查找。
+    """
+    import shutil
+    # 1) 允许通过环境变量覆盖
+    env_tcb = os.environ.get("TCB_BIN")
+    if env_tcb and os.path.exists(env_tcb):
+        return env_tcb
+    # 2) 本机已知安装位置（WorkBuddy 内置 node）
+    candidates = [
+        "/Users/zuomeica/.workbuddy/binaries/node/versions/22.22.2-6/bin/tcb",
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    # 3) 回退到 PATH
+    found = shutil.which("tcb")
+    if found:
+        return found
+    return None
+
+
 def md5(p):
     import hashlib
     h = hashlib.md5()
@@ -77,6 +102,10 @@ def main():
     if not FUNC_DIR.is_dir():
         sys.exit(f"❌ 未找到云函数目录: {FUNC_DIR}\n请确认本脚本位于 wechat-miniprogram/scripts/ 下。")
 
+    tcb = find_tcb()
+    if not tcb:
+        sys.exit("❌ 找不到 tcb 命令。请确认 CloudBase CLI 已安装，或将 TCB_BIN 指向 tcb 绝对路径。")
+
     # 1) 复制最新库进云函数目录
     dest = FUNC_DIR / "supplier_db.sqlite"
     shutil.copyfile(args.db, dest)
@@ -86,7 +115,7 @@ def main():
     #    --force 跳过"同名函数覆盖"交互确认，便于全自动定时运行
     #    --install-dependency false 表示依赖已随包上传，云端不再自动 npm install
     #      （保持函数包精简，冷启动快，避免触发小程序端 3 秒网关超时）
-    cmd = ["tcb", "fn", "deploy", "queryParts", "--force",
+    cmd = [tcb, "fn", "deploy", "queryParts", "--force",
            "--install-dependency", "false", "--cwd", str(PROJECT_ROOT)]
     print("\n执行部署:", " ".join(cmd))
     r = subprocess.run(cmd)
